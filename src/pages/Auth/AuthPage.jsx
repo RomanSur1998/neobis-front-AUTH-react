@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 const AuthPage = () => {
   const [isShow, setIsShow] = useState(false);
+
   return (
     <>
       <h2>Вэлком бэк!</h2>
