@@ -6,13 +6,13 @@ export default defineConfig({
   plugins: [react()],
   css: {
     modules: {
-      localsConvention: "dashesOnly",
+      localsConvention: "camelCase",
     },
   },
   resolve: {
     alias: {
       "@assets": "src/assets",
-      "@images": "src/images",
+      // "@images": "src/images",
     },
   },
 });

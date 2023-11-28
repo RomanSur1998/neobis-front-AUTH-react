@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
+import show from "../../assets/IconPasswordShow.svg";
+import unShow from "../../assets/IconPasswordUnShow.svg";
+import { getClassName } from "../../functions/getClassName";
+import { validationSchema } from "../../functions/getShema";
 
 const AuthForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -16,29 +22,21 @@ const AuthForm = () => {
       console.log(JSON.stringify(values, null, 2));
       dispatch(setUser(values));
     },
-    validationSchema: yup.object({
-      email: yup.string().email("Поправте email").required("Обязательное поле"),
-      login: yup.string().required("Обязательное поле"),
-      password: yup
-        .string()
-        .required("Обязательное поле")
-        .min(8, "От 8 до 15 символов")
-        .max(15)
-        .matches(/[a-zA-Z]/, "Строчные и прописные буквы")
-        .matches(/\d/, "Минимум 1 цифра")
-        .matches(/[!@#$%^&*(),.?":{}|<>]/, "Минимум 1 спецсимвол"),
-
-      confirm: yup
-        .string()
-        .oneOf([yup.ref("password"), null], "Пароли должны совпадать")
-        .required("Обязательное поле для подтверждения пароля"),
-    }),
+    validationSchema,
   });
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const hendleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
-        <label>
+      <form className="d_flex column gap-4 " onSubmit={formik.handleSubmit}>
+        <label className="">
           <input
+            className="input"
             type="text"
             id="email"
             name="email"
@@ -48,11 +46,12 @@ const AuthForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.errors.email && formik.touched.email ? (
-            <div>{formik.errors.email}</div>
+            <div className="red">{formik.errors.email}</div>
           ) : null}
         </label>
         <label>
           <input
+            className="input"
             type="text"
             placeholder="Придумай логин"
             id="login"
@@ -61,13 +60,19 @@ const AuthForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          {formik.errors.login && formik.touched.login ? (
+            <div className="red">{formik.errors.login}</div>
+          ) : null}
         </label>
-        {formik.errors.login && formik.touched.login ? (
-          <div>{formik.errors.login}</div>
-        ) : null}
+
         <label>
           <input
-            type="text"
+            className={
+              formik.errors.password && formik.touched.password
+                ? "input red"
+                : "input green"
+            }
+            type={showPassword ? "text" : "password"}
             placeholder="Создай пароль"
             id="password"
             name="password"
@@ -75,52 +80,32 @@ const AuthForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          <img
+            className="img_hide"
+            onClick={handleShowPassword}
+            src={showPassword ? show : unShow}
+            alt=""
+          />
         </label>
+
         <ul>
-          <li
-            className={
-              formik.errors.password === "От 8 до 15 символов" &&
-              formik.touched.password
-                ? "red"
-                : "green"
-            }
-          >
+          <li className={getClassName(formik, "От 8 до 15 символов")}>
             От 8 до 15 символов
           </li>
-          <li
-            className={
-              formik.errors.password === "Строчные и прописные буквы" &&
-              formik.touched.password
-                ? "red"
-                : "green"
-            }
-          >
+          <li className={getClassName(formik, "Строчные и прописные буквы")}>
             Строчные и прописные буквы
           </li>
-          <li
-            className={
-              formik.errors.password === "Минимум 1 цифра" &&
-              formik.touched.password
-                ? "red"
-                : "green"
-            }
-          >
+          <li className={getClassName(formik, "Минимум 1 цифра")}>
             Минимум 1 цифра
           </li>
-          <li
-            className={
-              formik.errors.password === "Минимум 1 спецсимвол" &&
-              formik.touched.password
-                ? "red"
-                : "green"
-            }
-          >
+          <li className={getClassName(formik, "Минимум 1 спецсимвол")}>
             Минимум 1 спецсимвол (!, ", #, $...)
           </li>
         </ul>
         <label>
           <input
-            type="text"
+            className="input"
+            type={showConfirmPassword ? "text" : "password"}
             id="confirm"
             name="confirm"
             placeholder="Повтори пароль"
@@ -128,12 +113,20 @@ const AuthForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          <img
+            className="img_hide"
+            onClick={hendleShowConfirmPassword}
+            src={showConfirmPassword ? show : unShow}
+            alt=""
+          />
+          {formik.errors.confirm && formik.touched.confirm ? (
+            <div className="red">{formik.errors.confirm}</div>
+          ) : null}
         </label>
 
-        {formik.errors.confirm && formik.touched.confirm ? (
-          <div>{formik.errors.confirm}</div>
-        ) : null}
-        <button type="submit">Далее</button>
+        <button className="button gray " type="submit">
+          Далее
+        </button>
       </form>
     </>
   );
