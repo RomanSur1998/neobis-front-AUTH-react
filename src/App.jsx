@@ -1,5 +1,6 @@
 import React from "react";
 import MainRouter from "./router/MainRouter";
+import "./styles/Global.css";
 
 const App = () => {
   return (

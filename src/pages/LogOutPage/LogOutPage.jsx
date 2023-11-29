@@ -6,8 +6,8 @@ const LogOutPage = () => {
   return (
     <>
       <section className="heigth d_flex column align_c ">
-        <h2>Добро пожаловать!</h2>
-        <h4>Lorby - твой личный репетитор</h4>
+        <h2 className="lorby">Lorby </h2>
+        <h3 className="self ">Твой личный репетитор</h3>
         <img src={MainPicture} alt="" />
         <Link>Выйти</Link>
       </section>

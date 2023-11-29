@@ -14,5 +14,5 @@ export const validationSchema = yup.object({
   confirm: yup
     .string()
     .oneOf([yup.ref("password"), null], "Пароли должны совпадать")
-    .required("Обязательное поле для подтверждения пароля"),
+    .required("Подтверждения пароля"),
 });

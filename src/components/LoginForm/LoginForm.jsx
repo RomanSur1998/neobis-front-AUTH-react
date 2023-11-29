@@ -25,7 +25,10 @@ function LoginForm() {
   }
   return (
     <>
-      <form className="d_flex column gap-4" onSubmit={formik.handleSubmit}>
+      <form
+        className="d_flex column gap-4 align_c "
+        onSubmit={formik.handleSubmit}
+      >
         <label>
           <Field
             classblock={"input"}

@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "./RegistrationPageStyle.css";
 import AuthForm from "../../components/AuthForm/AuthForm";
 import MainPicture from "../../assets/MainPicture.svg";
 
@@ -10,14 +9,14 @@ const RegistrationPage = () => {
   console.log(user);
   return (
     <>
-      <section className="d_flex heigth">
-        <div className="d_flex column  ">
-          <img src={MainPicture} alt="" />
-          <h2>Lorby </h2>
-          <h3>Твой личный репетитор</h3>
+      <section className="d_flex heigth align_c ">
+        <div className="d_flex column   align_c ">
+          <img src={MainPicture} alt="lorby" />
+          <h2 className="lorby">Lorby </h2>
+          <h3 className="self ">Твой личный репетитор</h3>
         </div>
         <div>
-          <h2>С оздать аккаунт Lorby</h2>
+          <h2 className="text_align title magit_bot">С оздать аккаунт Lorby</h2>
           <AuthForm />
         </div>
       </section>

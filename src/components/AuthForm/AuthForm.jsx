@@ -36,7 +36,7 @@ const AuthForm = () => {
   };
   return (
     <>
-      <form className="d_flex column gap-4 " onSubmit={formik.handleSubmit}>
+      <form className="d_flex column gap-4   " onSubmit={formik.handleSubmit}>
         <label className="">
           <Field
             classblock={"input"}
@@ -82,7 +82,7 @@ const AuthForm = () => {
           />
         </label>
 
-        <ul>
+        <ul className="align_s">
           <li className={getClassName(formik, "От 8 до 15 символов")}>
             От 8 до 15 символов
           </li>
