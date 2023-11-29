@@ -6,6 +6,8 @@ import show from "../../assets/IconPasswordShow.svg";
 import unShow from "../../assets/IconPasswordUnShow.svg";
 import { getClassName } from "../../functions/getClassName";
 import { validationSchema } from "../../functions/getShema";
+import Field from "../Fields/Field";
+import { setUser } from "../../redux/slices/UserSlice";
 
 const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +20,7 @@ const AuthForm = () => {
       password: "",
       confirm: "",
     },
+
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
       dispatch(setUser(values));
@@ -35,30 +38,24 @@ const AuthForm = () => {
     <>
       <form className="d_flex column gap-4 " onSubmit={formik.handleSubmit}>
         <label className="">
-          <input
-            className="input"
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Введите адрес почты"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+          <Field
+            classblock={"input"}
+            type={"text"}
+            name={"email"}
+            formik={formik}
+            placeholder={"Введите адрес почты"}
           />
           {formik.errors.email && formik.touched.email ? (
             <div className="red">{formik.errors.email}</div>
           ) : null}
         </label>
         <label>
-          <input
-            className="input"
-            type="text"
-            placeholder="Придумай логин"
-            id="login"
-            name="login"
-            value={formik.values.login}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+          <Field
+            classblock={"input"}
+            type={"text"}
+            name={"login"}
+            formik={formik}
+            placeholder={"Придумай логин"}
           />
           {formik.errors.login && formik.touched.login ? (
             <div className="red">{formik.errors.login}</div>
@@ -66,19 +63,16 @@ const AuthForm = () => {
         </label>
 
         <label>
-          <input
-            className={
+          <Field
+            classblock={
               formik.errors.password && formik.touched.password
                 ? "input red"
                 : "input green"
             }
             type={showPassword ? "text" : "password"}
-            placeholder="Создай пароль"
-            id="password"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            name={"password"}
+            formik={formik}
+            placeholder={"Создай пароль"}
           />
           <img
             className="img_hide"
@@ -103,15 +97,12 @@ const AuthForm = () => {
           </li>
         </ul>
         <label>
-          <input
-            className="input"
+          <Field
+            classblock={"input"}
             type={showConfirmPassword ? "text" : "password"}
-            id="confirm"
-            name="confirm"
-            placeholder="Повтори пароль"
-            value={formik.values.confirm}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            name={"confirm"}
+            formik={formik}
+            placeholder={"Повтори пароль"}
           />
           <img
             className="img_hide"
@@ -124,7 +115,10 @@ const AuthForm = () => {
           ) : null}
         </label>
 
-        <button className="button gray " type="submit">
+        <button
+          className={!formik.isValid ? "button gray " : "button black"}
+          type="submit"
+        >
           Далее
         </button>
       </form>

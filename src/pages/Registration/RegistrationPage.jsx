@@ -11,7 +11,7 @@ const RegistrationPage = () => {
   return (
     <>
       <section className="d_flex heigth">
-        <div className=" d_flex column  ">
+        <div className="d_flex column  ">
           <img src={MainPicture} alt="" />
           <h2>Lorby </h2>
           <h3>Твой личный репетитор</h3>

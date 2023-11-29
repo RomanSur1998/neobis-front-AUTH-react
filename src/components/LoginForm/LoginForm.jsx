@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import show from "../../assets/IconPasswordShow.svg";
 import unShow from "../../assets/IconPasswordUnShow.svg";
+import Field from "../Fields/Field";
+import { validationSchema } from "../../functions/getShemaLogin";
 
 function LoginForm() {
   const [isShow, setIsShow] = useState(false);
@@ -15,10 +17,7 @@ function LoginForm() {
     onSubmit: (values) => {
       console.log("submit", JSON.stringify(values, null, 2));
     },
-    validationSchema: yup.object({
-      login: yup.string().required("Введите логин"),
-      password: yup.string().required("Введите пароль"),
-    }),
+    validationSchema,
   });
 
   function hahleShowPassword() {
@@ -28,31 +27,24 @@ function LoginForm() {
     <>
       <form className="d_flex column gap-4" onSubmit={formik.handleSubmit}>
         <label>
-          <input
-            className="input"
-            type="text"
-            id="login"
-            name="login"
-            placeholder="Введите адрес почты"
-            value={formik.values.login}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+          <Field
+            classblock={"input"}
+            type={"text"}
+            name={"login"}
+            formik={formik}
+            placeholder={"Введите адрес почты"}
           />
           {formik.errors.login && formik.touched.login ? (
             <div className="red">{formik.errors.login}</div>
           ) : null}
         </label>
         <label>
-          <input
-            className="input"
+          <Field
+            classblock={"input"}
             type={isShow ? "text" : "password"}
-            // type="text"
-            placeholder="Создай пароль"
-            id="password"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            name={"password"}
+            formik={formik}
+            placeholder={"Введите пароль"}
           />
           <img
             className="img_hide"

@@ -1,5 +1,4 @@
-import { Field, Form, Formik, useFormik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import MainPicture from "../../assets/MainPicture.svg";
 import "./AuthPageStyle.css";

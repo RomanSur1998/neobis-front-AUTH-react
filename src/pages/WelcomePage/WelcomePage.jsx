@@ -1,5 +1,5 @@
 import React from "react";
-import Lordy from "../../assets/";
+import styles from "../WelcomePage/WelcomePage.module.css";
 
 const WelcomePage = () => {
   return <div>WelcomePage</div>;
