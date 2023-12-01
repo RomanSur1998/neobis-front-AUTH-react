@@ -8,8 +8,8 @@ const AuthPage = () => {
       <section className="d_flex heigth align_c">
         <div className="d_flex column   align_c">
           <img src={MainPicture} alt="" />
-          <h2>Lorby </h2>
-          <h3>Твой личный репетитор</h3>
+          <h2 className="lorby">Lorby </h2>
+          <h3 className="self ">Твой личный репетитор</h3>
         </div>
         <div className="d_flex column align_c ">
           <h2>Вэлком бэк!</h2>
