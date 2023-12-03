@@ -95,18 +95,6 @@ const AuthForm = () => {
               </li>
             );
           })}
-          {/* <li className={getClassName(formik, "От 8 до 15 символов")}>
-            От 8 до 15 символов
-          </li>
-          <li className={getClassName(formik, "Строчные и прописные буквы")}>
-            Строчные и прописные буквы
-          </li>
-          <li className={getClassName(formik, "Минимум 1 цифра")}>
-            Минимум 1 цифра
-          </li>
-          <li className={getClassName(formik, "Минимум 1 спецсимвол")}>
-            Минимум 1 спецсимвол (!, ", #, $...)
-          </li> */}
         </ul>
         <label>
           <Field
