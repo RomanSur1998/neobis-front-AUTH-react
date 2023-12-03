@@ -98,7 +98,11 @@ const AuthForm = () => {
         </ul>
         <label>
           <Field
-            classblock={"input"}
+            classblock={
+              formik.errors.confirm && formik.touched.confirm
+                ? "input red"
+                : "input green"
+            }
             type={showConfirmPassword ? "text" : "password"}
             name={"confirm"}
             formik={formik}

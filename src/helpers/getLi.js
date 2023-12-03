@@ -11,7 +11,7 @@ export function getLi(formik) {
     formik.values.password.length <= 15
   ) {
     arrLi[0].style = "green";
-  } else if (formik.errors.password === "От 8 до 15 символов") {
+  } else if (formik.errors.password) {
     arrLi[0].style = "red";
   }
   if (
@@ -19,17 +19,17 @@ export function getLi(formik) {
     /[A-Z]/.test(formik.values.password)
   ) {
     arrLi[1].style = "green";
-  } else if (formik.errors.password === "Строчные и прописные буквы") {
+  } else if (formik.errors.password) {
     arrLi[1].style = "red";
   }
   if (/\d/.test(formik.values.password)) {
     arrLi[2].style = "green";
-  } else if (formik.errors.password === "Минимум 1 цифра") {
+  } else if (formik.errors.password) {
     arrLi[2].style = "red";
   }
   if (/[!@#$%^&*(),.?":{}|<>]/.test(formik.values.password)) {
     arrLi[3].style = "green";
-  } else if (formik.errors.password === "Минимум 1 спецсимвол") {
+  } else if (formik.errors.password``) {
     arrLi[3].style = "red";
   }
 
