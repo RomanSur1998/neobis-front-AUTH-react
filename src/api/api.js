@@ -5,6 +5,6 @@ export const api = {
   },
   autorisation: async function () {
     try {
-    } catch (s) {}
+    } catch (error) {}
   },
 };

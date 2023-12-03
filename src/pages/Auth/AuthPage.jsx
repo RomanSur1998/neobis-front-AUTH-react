@@ -11,7 +11,7 @@ const AuthPage = () => {
           <h2 className="lorby">Lorby </h2>
           <h3 className="self ">Твой личный репетитор</h3>
         </div>
-        <div className="d_flex column align_c ">
+        <div className="d_flex column align_c gap-4 ">
           <h2>Вэлком бэк!</h2>
           <LoginForm />
         </div>

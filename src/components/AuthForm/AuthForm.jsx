@@ -8,6 +8,7 @@ import { getClassName } from "../../functions/getClassName";
 import { validationSchema } from "../../functions/getShema";
 import Field from "../Fields/Field";
 import { setUser } from "../../redux/slices/UserSlice";
+import { getLi } from "../../helpers/getLi";
 
 const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +35,10 @@ const AuthForm = () => {
   const hendleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  const ErrorObj = formik.values.password;
+  console.log("values fromik ", ErrorObj);
+
   return (
     <>
       <form className="d_flex column gap-4   " onSubmit={formik.handleSubmit}>
@@ -83,7 +88,14 @@ const AuthForm = () => {
         </label>
 
         <ul className="align_s">
-          <li className={getClassName(formik, "От 8 до 15 символов")}>
+          {getLi(formik).map((elem) => {
+            return (
+              <li key={elem.key} className={elem.style}>
+                {elem.text}
+              </li>
+            );
+          })}
+          {/* <li className={getClassName(formik, "От 8 до 15 символов")}>
             От 8 до 15 символов
           </li>
           <li className={getClassName(formik, "Строчные и прописные буквы")}>
@@ -94,7 +106,7 @@ const AuthForm = () => {
           </li>
           <li className={getClassName(formik, "Минимум 1 спецсимвол")}>
             Минимум 1 спецсимвол (!, ", #, $...)
-          </li>
+          </li> */}
         </ul>
         <label>
           <Field
