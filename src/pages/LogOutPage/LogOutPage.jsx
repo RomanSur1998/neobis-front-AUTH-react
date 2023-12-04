@@ -9,8 +9,8 @@ const LogOutPage = () => {
   return (
     <>
       <section className="heigth d_flex column align_c ">
-        <h2 className="lorby">Lorby </h2>
-        <h3 className="self ">Твой личный репетитор</h3>
+        <h2 className="lorby">С возвращением!</h2>
+        <h3 className="self ">Lorby - твой личный репетитор</h3>
         <img src={MainPicture} alt="" />
         <button
           onClick={() => {

@@ -12,8 +12,11 @@ const userSlice = createSlice({
       state.password = action.payload.password;
       state.confirm = action.payload.confirm;
     },
+    setToken(state, action) {
+      state.token = action.payload.token;
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setToken } = userSlice.actions;
 export default userSlice.reducer;

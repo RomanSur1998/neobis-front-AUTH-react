@@ -1,10 +1,20 @@
+import confAxios from "../config/AxiosConfig";
+
 export const api = {
-  registration: async function () {
+  registration: async function (data) {
     try {
-    } catch (error) {}
+      const response = await confAxios.post(data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   },
-  autorisation: async function () {
+  autorisation: async function (data) {
     try {
-    } catch (error) {}
+      const response = await confAxios.post(data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   },
 };

@@ -29,7 +29,7 @@ export function getLi(formik) {
   }
   if (/[!@#$%^&*(),.?":{}|<>]/.test(formik.values.password)) {
     arrLi[3].style = "green";
-  } else if (formik.errors.password``) {
+  } else if (formik.errors.password) {
     arrLi[3].style = "red";
   }
 

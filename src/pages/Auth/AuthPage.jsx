@@ -1,8 +1,14 @@
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import MainPicture from "../../assets/MainPicture.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthPage = () => {
+  // !Добавил тостер
+  const notify = () => toast("Cool");
+  // !Добавил тостер
+
   return (
     <>
       <section className="d_flex heigth align_c">
@@ -16,6 +22,8 @@ const AuthPage = () => {
           <LoginForm />
         </div>
       </section>
+      {/* <button onClick={notify}>Toasty</button> */}
+      <ToastContainer />
     </>
   );
 };

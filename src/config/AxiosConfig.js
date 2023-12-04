@@ -5,7 +5,7 @@ const confAxios = () => {
 
   const configuratedAxios = axios.create({
     baseURL: API,
-    timeout: 8000,
+    // timeout: 8000,
     // headers: { Authorization },
   });
 
