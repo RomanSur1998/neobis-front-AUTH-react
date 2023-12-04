@@ -22,20 +22,20 @@ const WelcomePage = () => {
             example@gmail.com
           </h4>
           <h4>(´｡• ω •｡`)</h4>
-          <button
+          <span
+            className="out"
             onClick={() => {
               setActive(true);
             }}
           >
             Письмо не пришло
-          </button>
+          </span>
         </div>
       </section>
       {isActive ? (
         <ModalLogOut setActive={setActive} isActive={isActive}>
           <div className="d_flex column align_c gap-4 top-20">
-            <h3 className="align_text">
-              {/* Здесь надо вставить почту из тех данных . что дал пользователь  */}
+            <h3 className="align_text text_width">
               Мы выслали еще одно письмо на указанную тобой почту
               example@gmail.com
             </h3>

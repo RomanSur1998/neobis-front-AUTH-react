@@ -6,7 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AuthPage = () => {
   // !Добавил тостер
-  const notify = () => toast("Cool");
+  const notify = () =>
+    toast.error("Неверный логин или пароль", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   // !Добавил тостер
 
   return (
@@ -22,7 +32,7 @@ const AuthPage = () => {
           <LoginForm />
         </div>
       </section>
-      {/* <button onClick={notify}>Toasty</button> */}
+      <button onClick={notify}>Toasty</button>
       <ToastContainer />
     </>
   );

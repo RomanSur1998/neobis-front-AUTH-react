@@ -11,7 +11,7 @@ export function getLi(formik) {
     formik.values.password.length <= 15
   ) {
     arrLi[0].style = "green";
-  } else if (formik.errors.password) {
+  } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[0].style = "red";
   }
   if (
@@ -19,17 +19,17 @@ export function getLi(formik) {
     /[A-Z]/.test(formik.values.password)
   ) {
     arrLi[1].style = "green";
-  } else if (formik.errors.password) {
+  } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[1].style = "red";
   }
   if (/\d/.test(formik.values.password)) {
     arrLi[2].style = "green";
-  } else if (formik.errors.password) {
+  } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[2].style = "red";
   }
   if (/[!@#$%^&*(),.?":{}|<>]/.test(formik.values.password)) {
     arrLi[3].style = "green";
-  } else if (formik.errors.password) {
+  } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[3].style = "red";
   }
 

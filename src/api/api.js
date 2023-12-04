@@ -6,7 +6,7 @@ export const api = {
       const response = await confAxios.post(data);
       return response;
     } catch (error) {
-      console.log(error);
+      console.log("Error registration", error);
     }
   },
   autorisation: async function (data) {
@@ -14,7 +14,7 @@ export const api = {
       const response = await confAxios.post(data);
       return response;
     } catch (error) {
-      console.log(error);
+      console.log("Error autorization", error);
     }
   },
 };

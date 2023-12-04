@@ -12,13 +12,14 @@ const LogOutPage = () => {
         <h2 className="lorby">С возвращением!</h2>
         <h3 className="self ">Lorby - твой личный репетитор</h3>
         <img src={MainPicture} alt="" />
-        <button
+        <span
+          className="out"
           onClick={() => {
             setActive(true);
           }}
         >
           Выйти
-        </button>
+        </span>
       </section>
       {isActive ? (
         <ModalLogOut setActive={setActive} isActive={isActive}>

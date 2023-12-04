@@ -72,6 +72,11 @@ label {
   height: 50px;
   border: none;
   border-radius: 12px;
+  transition: 0.3s ease-in-out;
+}
+.button:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
 }
 li {
   list-style: none;
@@ -130,4 +135,18 @@ li {
 }
 button {
   cursor: pointer;
+}
+.out {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.out:hover {
+  transform: scale(1.2);
+  transition: 0.2s ease-in-out;
+}
+.text_width {
+  width: 350px;
+}
+a {
+  color: #212121;
 }
