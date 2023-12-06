@@ -29,10 +29,10 @@ const AuthPage = () => {
         </div>
         <div className="d_flex column align_c gap-4 ">
           <h2>Вэлком бэк!</h2>
-          <LoginForm />
+          <LoginForm notify={notify} />
         </div>
       </section>
-      <button onClick={notify}>Toasty</button>
+      {/* <button onClick={notify}>Toasty</button> */}
       <ToastContainer />
     </>
   );

@@ -1,12 +1,12 @@
 import axios from "axios";
+import { API } from "../helpers/constants";
 
 const confAxios = () => {
-  //   const Authorization = tokens ? `Bearer ${tokens.access}` : null;
-
   const configuratedAxios = axios.create({
     baseURL: API,
-    // timeout: 8000,
-    // headers: { Authorization },
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   return configuratedAxios;

@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import show from "../../assets/IconPasswordShow.svg";
 import unShow from "../../assets/IconPasswordUnShow.svg";
 import Field from "../Fields/Field";
 import { validationSchema } from "../../functions/getShemaLogin";
+import { api } from "../../api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../../redux/slices/UserSlice";
 
-function LoginForm() {
+function LoginForm({ notify }) {
   const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  function handleLogin() {
+    api.autorisation(JSON.stringify(user, null, 2), navigate, notify);
+  }
+  // console.log(user);
   const formik = useFormik({
     initialValues: {
-      login: "",
+      username: "",
       password: "",
     },
     onSubmit: (values) => {
       console.log("submit", JSON.stringify(values, null, 2));
+      dispatch(setLogin(values));
+      handleLogin();
     },
     validationSchema,
   });
@@ -23,6 +35,7 @@ function LoginForm() {
   function hahleShowPassword() {
     setIsShow(!isShow);
   }
+
   return (
     <>
       <form
@@ -33,12 +46,12 @@ function LoginForm() {
           <Field
             classblock={"input"}
             type={"text"}
-            name={"login"}
+            name={"username"}
             formik={formik}
             placeholder={"Введите адрес почты"}
           />
-          {formik.errors.login && formik.touched.login ? (
-            <div className="red">{formik.errors.login}</div>
+          {formik.errors.username && formik.touched.username ? (
+            <div className="red">{formik.errors.username}</div>
           ) : null}
         </label>
         <label>

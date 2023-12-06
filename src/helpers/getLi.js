@@ -13,6 +13,8 @@ export function getLi(formik) {
     arrLi[0].style = "green";
   } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[0].style = "red";
+  } else if (formik.touched.password) {
+    arrLi[0].style = "red";
   }
   if (
     /[a-z]/.test(formik.values.password) &&
@@ -21,15 +23,21 @@ export function getLi(formik) {
     arrLi[1].style = "green";
   } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[1].style = "red";
+  } else if (formik.touched.password) {
+    arrLi[1].style = "red";
   }
   if (/\d/.test(formik.values.password)) {
     arrLi[2].style = "green";
   } else if (formik.errors.password && formik.values.password.length !== 0) {
     arrLi[2].style = "red";
+  } else if (formik.touched.password) {
+    arrLi[2].style = "red";
   }
   if (/[!@#$%^&*(),.?":{}|<>]/.test(formik.values.password)) {
     arrLi[3].style = "green";
   } else if (formik.errors.password && formik.values.password.length !== 0) {
+    arrLi[3].style = "red";
+  } else if (formik.touched.password) {
     arrLi[3].style = "red";
   }
 

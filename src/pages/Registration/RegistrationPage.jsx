@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import AuthForm from "../../components/AuthForm/AuthForm";
 import MainPicture from "../../assets/MainPicture.svg";

@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import show from "../../assets/IconPasswordShow.svg";
 import unShow from "../../assets/IconPasswordUnShow.svg";
-import { getClassName } from "../../functions/getClassName";
 import { validationSchema } from "../../functions/getShema";
 import Field from "../Fields/Field";
 import { setUser } from "../../redux/slices/UserSlice";
 import { getLi } from "../../helpers/getLi";
+import { api } from "../../api/api";
+import { useNavigate } from "react-router";
 
 const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  function handleRegistr() {
+    api.registration(JSON.stringify(user, null, 2), navigate);
+
+    console.log(JSON.stringify(user, null, 2));
+  }
+  useEffect(() => {
+    handleRegistr();
+  }, [user]);
+
   const formik = useFormik({
     initialValues: {
       email: "",
-      login: "",
+      username: "",
       password: "",
       confirm: "",
     },
-
     onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
       dispatch(setUser(values));
     },
     validationSchema,
@@ -36,13 +47,10 @@ const AuthForm = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const ErrorObj = formik.values.password;
-  console.log("values fromik ", ErrorObj);
-
   return (
     <>
       <form className="d_flex column gap-4   " onSubmit={formik.handleSubmit}>
-        <label className="">
+        <label>
           <Field
             classblock={"input"}
             type={"text"}
@@ -58,12 +66,12 @@ const AuthForm = () => {
           <Field
             classblock={"input"}
             type={"text"}
-            name={"login"}
+            name={"username"}
             formik={formik}
             placeholder={"Придумай логин"}
           />
-          {formik.errors.login && formik.touched.login ? (
-            <div className="red">{formik.errors.login}</div>
+          {formik.errors.username && formik.touched.username ? (
+            <div className="red">{formik.errors.username}</div>
           ) : null}
         </label>
 
