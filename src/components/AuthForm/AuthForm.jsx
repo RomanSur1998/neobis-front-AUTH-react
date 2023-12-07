@@ -19,7 +19,7 @@ const AuthForm = () => {
   const user = useSelector((state) => state.user);
 
   function handleRegistr() {
-    api.registration(JSON.stringify(user, null, 2), navigate);
+    api.registration(JSON.stringify(user.user, null, 2), navigate);
 
     console.log(JSON.stringify(user, null, 2));
   }

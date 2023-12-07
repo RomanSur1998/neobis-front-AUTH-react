@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api/api";
 
-const initialState = {};
+const initialState = {
+  user: {},
+  token: "",
+  error: false,
+};
 
 const registrUser = createAsyncThunk("user/registrUser", async () => {
   const response = await api.registration();
+  return response;
 });
 
 const userSlice = createSlice({
@@ -12,9 +17,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.email = action.payload.email;
-      state.username = action.payload.username;
-      state.password = action.payload.password;
+      // state.email = action.payload.email;
+      // state.username = action.payload.username;
+      // state.password = action.payload.password;
+      state.user = {
+        email: action.payload.email,
+        username: action.payload.username,
+        password: action.payload.password,
+      };
     },
     setToken(state, action) {
       state.token = action.payload.token;
@@ -23,6 +33,15 @@ const userSlice = createSlice({
       state.username = action.payload.username;
       state.password = action.payload.password;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(registrUser.fulfilled, (state) => {
+      state.token = action.payload.token;
+    });
+
+    builder.addCase(registrUser.rejected, (state) => {
+      state.error = action.payload.error;
+    });
   },
 });
 
