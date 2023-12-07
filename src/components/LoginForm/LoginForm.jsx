@@ -15,13 +15,14 @@ function LoginForm({ notify }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  console.log(user, "login user");
   function handleLogin() {
-    api.autorisation(JSON.stringify(user, null, 2), navigate, notify);
+    api.autorisation(JSON.stringify(user.user, null, 2), navigate, notify);
   }
-  // console.log(user);
+
   const formik = useFormik({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
     onSubmit: (values) => {
@@ -46,12 +47,12 @@ function LoginForm({ notify }) {
           <Field
             classblock={"input"}
             type={"text"}
-            name={"username"}
+            name={"email"}
             formik={formik}
             placeholder={"Введите адрес почты"}
           />
-          {formik.errors.username && formik.touched.username ? (
-            <div className="red">{formik.errors.username}</div>
+          {formik.errors.email && formik.touched.email ? (
+            <div className="red">{formik.errors.email}</div>
           ) : null}
         </label>
         <label>

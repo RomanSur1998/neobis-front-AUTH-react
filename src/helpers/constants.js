@@ -1,1 +1,1 @@
-export const API = "https://authdrf-production.up.railway.app/";
+export const API = "http://165.22.71.95:8000/";

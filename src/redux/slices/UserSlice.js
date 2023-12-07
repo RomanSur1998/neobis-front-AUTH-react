@@ -17,9 +17,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      // state.email = action.payload.email;
-      // state.username = action.payload.username;
-      // state.password = action.payload.password;
       state.user = {
         email: action.payload.email,
         username: action.payload.username,
@@ -30,8 +27,10 @@ const userSlice = createSlice({
       state.token = action.payload.token;
     },
     setLogin(state, action) {
-      state.username = action.payload.username;
-      state.password = action.payload.password;
+      state.user = {
+        email: action.payload.email,
+        password: action.payload.password,
+      };
     },
   },
   extraReducers: (builder) => {

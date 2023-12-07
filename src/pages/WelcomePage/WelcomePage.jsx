@@ -16,8 +16,8 @@ const WelcomePage = () => {
 
   function sandeCode(event) {
     event.preventDefault();
-
-    api.confirmRegistr(code, navigate);
+    const resp = api.confirmRegistr(code, navigate);
+    console.log(resp);
   }
   console.log(code, "code");
   return (
