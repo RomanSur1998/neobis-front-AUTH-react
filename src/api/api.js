@@ -35,4 +35,11 @@ export const api = {
       console.log("confirm Errors ", error);
     }
   },
+  logOutUser: async function (data, navigate) {
+    try {
+      const response = await confAxios("");
+    } catch (error) {
+      console.log("logOut error", error);
+    }
+  },
 };
