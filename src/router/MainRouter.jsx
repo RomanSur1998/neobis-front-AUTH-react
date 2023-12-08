@@ -6,6 +6,13 @@ import LogOutPage from "../pages/LogOutPage/LogOutPage";
 import WelcomePage from "../pages/WelcomePage/WelcomePage";
 
 const MainRouter = () => {
+  const PRIVETE_ROUT_COLLECTION = [
+    {
+      link: "/out",
+      element: <LogOutPage />,
+      id: 3,
+    },
+  ];
   const ROTES_COLLECTION = [
     {
       link: "/",

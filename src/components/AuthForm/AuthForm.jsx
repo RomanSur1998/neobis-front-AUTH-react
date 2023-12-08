@@ -6,9 +6,8 @@ import show from "../../assets/IconPasswordShow.svg";
 import unShow from "../../assets/IconPasswordUnShow.svg";
 import { validationSchema } from "../../functions/getShema";
 import Field from "../Fields/Field";
-import { setUser, signUpUser } from "../../redux/slices/UserSlice";
+import { signUpUser } from "../../redux/slices/UserSlice";
 import { getLi } from "../../helpers/getLi";
-import { api } from "../../api/api";
 import { useNavigate } from "react-router";
 
 const AuthForm = () => {
@@ -17,14 +16,6 @@ const AuthForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
-  // function handleRegistr() {
-  //   api.registration(JSON.stringify(user.user, null, 2), navigate);
-  //   console.log(JSON.stringify(user, null, 2));
-  // }
-  // useEffect(() => {
-  //   handleRegistr();
-  // }, [user.user]);
 
   const formik = useFormik({
     initialValues: {
@@ -35,7 +26,6 @@ const AuthForm = () => {
     },
     onSubmit: (values) => {
       dispatch(signUpUser({ data: values, navigate }));
-      // handleRegistr();
     },
     validationSchema,
   });

@@ -36,9 +36,19 @@ export const api = {
       throw error;
     }
   },
-  logOutUser: async function (data, navigate) {
+  logOutUser: async function (navigate) {
     try {
-      const response = await configuratedAxios.post();
+      const data = localStorage.getItem("tokens");
+      const token = {
+        refresh: data.refresh,
+      };
+      const response = await configuratedAxios.post(
+        "/logout",
+        JSON.stringify(token, null, 2)
+      );
+      data = {};
+      localStorage.setItem("tokens", JSON.stringify(data));
+      return response;
     } catch (error) {
       console.log("logOut error", error);
     }

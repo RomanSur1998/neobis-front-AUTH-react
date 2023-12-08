@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainPicture from "../../assets/MainPicture.svg";
 import { Link } from "react-router-dom";
 import ModalLogOut from "../../components/ModalLogOut/ModalLogOut";
+import { api } from "../../api/api";
 
 const LogOutPage = () => {
   const [isActive, setActive] = useState(false);
@@ -26,7 +27,14 @@ const LogOutPage = () => {
           <div className="d_flex column align_c gap-4 top-20">
             <h2>Выйти</h2>
             <h4>Точно выйти</h4>
-            <button className="button black">Выйти </button>
+            <button
+              className="button black"
+              onClick={() => {
+                api.logOutUser();
+              }}
+            >
+              Выйти{" "}
+            </button>
             <button
               onClick={() => {
                 setActive(false);

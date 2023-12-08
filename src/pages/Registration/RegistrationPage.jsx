@@ -16,7 +16,7 @@ const RegistrationPage = () => {
           <h3 className="self ">Твой личный репетитор</h3>
         </div>
         <div>
-          <h2 className="text_align title magit_bot">С оздать аккаунт Lorby</h2>
+          <h2 className="text_align title magit_bot">Создать аккаунт Lorby</h2>
           <AuthForm />
         </div>
       </section>

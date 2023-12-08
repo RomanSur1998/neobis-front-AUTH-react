@@ -5,7 +5,7 @@ import { api } from "../../api/api";
 
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { registrUser } from "../../redux/slices/UserSlice";
+import { registrUser, signUpUser } from "../../redux/slices/UserSlice";
 
 const WelcomePage = () => {
   const [isActive, setActive] = useState(false);
@@ -37,7 +37,7 @@ const WelcomePage = () => {
         <div className="d_flex column align_c width gap-4 ">
           <h2 className="text_align">
             Выслали письмо со ссылкой для завершения регистрации на
-            example@gmail.com
+            {`${user.user.email || "example@gmail.com"} `}.
           </h2>
           <form className="d_flex column align_c gap-4" onSubmit={sandeCode}>
             <input
@@ -58,7 +58,8 @@ const WelcomePage = () => {
             className="out"
             onClick={() => {
               setActive(true);
-              api.registration(JSON.stringify(user.user, null, 2), navigate);
+              dispatch(signUpUser({ data: user.user, navigate }));
+              // api.registration(JSON.stringify(user.user, null, 2), navigate);
             }}
           >
             Письмо не пришло
@@ -69,8 +70,8 @@ const WelcomePage = () => {
         <ModalLogOut setActive={setActive} isActive={isActive}>
           <div className="d_flex column align_c gap-4 top-20">
             <h3 className="align_text text_width">
-              Мы выслали еще одно письмо на указанную тобой почту
-              example@gmail.com
+              Мы выслали еще одно письмо на указанную тобой почту: <pre />
+              <span> {`${user.user.email || "example@gmail.com"} `}</span>
             </h3>
 
             <h4>Не забудь проверить ящик “Спам”!11!!!!</h4>
