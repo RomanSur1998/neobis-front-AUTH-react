@@ -1,9 +1,9 @@
-import confAxios from "../config/AxiosConfig";
+import { configuratedAxios } from "../config/AxiosConfig";
 
 export const api = {
   registration: async function (data, navigate) {
     try {
-      const response = await confAxios.post("register/", data);
+      const response = await configuratedAxios.post("register/", data);
       navigate("/welcome");
       return response;
     } catch (error) {
@@ -12,7 +12,7 @@ export const api = {
   },
   autorisation: async function (data, navigate, notify) {
     try {
-      const response = await confAxios.post("login", data);
+      const response = await configuratedAxios.post("login", data);
       navigate("/out");
       return response;
     } catch (error) {
@@ -25,7 +25,7 @@ export const api = {
       code: data,
     };
     try {
-      const response = await confAxios.post(
+      const response = await configuratedAxios.post(
         `confirm-email/${data}/`,
         JSON.stringify(code, null, 2)
       );
@@ -33,11 +33,12 @@ export const api = {
       return response;
     } catch (error) {
       console.log("confirm Errors ", error);
+      throw error;
     }
   },
   logOutUser: async function (data, navigate) {
     try {
-      const response = await confAxios("");
+      const response = await configuratedAxios.post();
     } catch (error) {
       console.log("logOut error", error);
     }

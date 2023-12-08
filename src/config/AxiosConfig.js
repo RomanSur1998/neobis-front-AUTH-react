@@ -1,15 +1,23 @@
 import axios from "axios";
 import { API } from "../helpers/constants";
 
-const confAxios = () => {
-  const configuratedAxios = axios.create({
-    baseURL: API,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const configuratedAxios = axios.create({
+  baseURL: API,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-  return configuratedAxios;
-};
+// configuratedAxios.interceptors.request.use((request) => {
+//   request.headers = {
+//     "Content-Type": "application/formdata",
+//   };
+//   return request;
+// });
 
-export default confAxios();
+// const confAxios = () => {
+
+//   return configuratedAxios;
+// };
+
+// export default confAxios();

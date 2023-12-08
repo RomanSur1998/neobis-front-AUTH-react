@@ -5,12 +5,37 @@ const initialState = {
   user: {},
   token: "",
   error: false,
+  status: null,
 };
 
-const registrUser = createAsyncThunk("user/registrUser", async () => {
-  const response = await api.registration();
-  return response;
-});
+export const registrUser = createAsyncThunk(
+  "user/registrUser",
+  async ({ code, navigate }, { rejectWithValue }) => {
+    try {
+      console.log("Проходит запрос", code);
+      const response = await api.confirmRegistr(code, navigate);
+      console.log("Пришел response", response);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.detail);
+    }
+  }
+);
+export const signUpUser = createAsyncThunk(
+  "user/signUpUser",
+  async ({ data, navigate }, { rejectWithValue, dispatch }) => {
+    try {
+      console.log("Проходит запрос", data);
+      const response = await api.registration(data, navigate);
+      console.log("Пришел response", response);
+      dispatch(setUser(data));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.detail);
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -24,7 +49,7 @@ const userSlice = createSlice({
       };
     },
     setToken(state, action) {
-      state.token = action.payload.token;
+      state.token = action.payload;
     },
     setLogin(state, action) {
       state.user = {
@@ -34,12 +59,18 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(registrUser.fulfilled, (state) => {
-      state.token = action.payload.token;
+    builder.addCase(registrUser.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(registrUser.fulfilled, (state, action) => {
+      state.token = action.payload;
+      state.status = null;
     });
 
-    builder.addCase(registrUser.rejected, (state) => {
-      state.error = action.payload.error;
+    builder.addCase(registrUser.rejected, (state, action) => {
+      console.log("rejected", action.payload);
+      state.error = action.payload;
+      state.status = null;
     });
   },
 });

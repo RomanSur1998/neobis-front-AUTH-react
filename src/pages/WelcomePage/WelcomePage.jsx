@@ -4,11 +4,17 @@ import ModalLogOut from "../../components/ModalLogOut/ModalLogOut";
 import { api } from "../../api/api";
 
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { registrUser } from "../../redux/slices/UserSlice";
 
 const WelcomePage = () => {
   const [isActive, setActive] = useState(false);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
+  console.log(user, "welcome");
 
   function handleCode(data) {
     setCode(data);
@@ -16,9 +22,9 @@ const WelcomePage = () => {
 
   function sandeCode(event) {
     event.preventDefault();
-    const resp = api.confirmRegistr(code, navigate);
-    console.log(resp);
+    dispatch(registrUser({ code: code, navigate }));
   }
+
   console.log(code, "code");
   return (
     <>
@@ -52,6 +58,7 @@ const WelcomePage = () => {
             className="out"
             onClick={() => {
               setActive(true);
+              api.registration(JSON.stringify(user.user, null, 2), navigate);
             }}
           >
             Письмо не пришло
