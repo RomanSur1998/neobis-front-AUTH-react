@@ -6,9 +6,9 @@ import LogOutPage from "../pages/LogOutPage/LogOutPage";
 import WelcomePage from "../pages/WelcomePage/WelcomePage";
 
 const MainRouter = () => {
-  const { refresh } = JSON.parse(localStorage.getItem("tokens"));
+  const tokens = JSON.parse(localStorage.getItem("tokens"));
 
-  const PRIVETE_ROUT_COLLECTION = [
+  const PRIVATE_ROUT_COLLECTION = [
     {
       link: "/out",
       element: <LogOutPage />,
@@ -42,8 +42,8 @@ const MainRouter = () => {
       {ROTES_COLLECTION.map((elem) => {
         return <Route path={elem.link} element={elem.element} key={elem.id} />;
       })}
-      {refresh
-        ? PRIVETE_ROUT_COLLECTION.map((elem) => {
+      {tokens?.refresh
+        ? PRIVATE_ROUT_COLLECTION.map((elem) => {
             return (
               <Route path={elem.link} element={elem.element} key={elem.id} />
             );
