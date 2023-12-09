@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AuthForm from "../../components/AuthForm/AuthForm";
 import MainPicture from "../../assets/MainPicture.svg";
+import { setToken } from "../../redux/slices/UserSlice";
+import { getToken } from "../../helpers/getToken";
 
 const RegistrationPage = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  useEffect(() => {
+    getToken(dispatch, setToken);
+  }, []);
 
   console.log(user);
   return (

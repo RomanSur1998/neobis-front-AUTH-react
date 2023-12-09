@@ -12,9 +12,7 @@ const WelcomePage = () => {
   const [code, setCode] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.user);
-  console.log(user, "welcome");
 
   function handleCode(data) {
     setCode(data);

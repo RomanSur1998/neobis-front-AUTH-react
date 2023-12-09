@@ -4,9 +4,11 @@ import RegistrationPage from "../pages/Registration/RegistrationPage";
 import AuthPage from "../pages/Auth/AuthPage";
 import LogOutPage from "../pages/LogOutPage/LogOutPage";
 import WelcomePage from "../pages/WelcomePage/WelcomePage";
+import { useSelector } from "react-redux";
 
 const MainRouter = () => {
-  const tokens = JSON.parse(localStorage.getItem("tokens"));
+  const { token } = useSelector((state) => state.user);
+  console.log(token, "user");
 
   const PRIVATE_ROUT_COLLECTION = [
     {
@@ -42,7 +44,7 @@ const MainRouter = () => {
       {ROTES_COLLECTION.map((elem) => {
         return <Route path={elem.link} element={elem.element} key={elem.id} />;
       })}
-      {tokens?.refresh
+      {token?.refresh
         ? PRIVATE_ROUT_COLLECTION.map((elem) => {
             return (
               <Route path={elem.link} element={elem.element} key={elem.id} />
