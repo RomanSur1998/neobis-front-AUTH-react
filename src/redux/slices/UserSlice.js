@@ -14,14 +14,17 @@ export const registrUser = createAsyncThunk(
     try {
       console.log("Проходит запрос", code);
       const response = await api.confirmRegistr(code, navigate);
-      console.log("Пришел response", response);
-      if (!localStorage.getItem("tokens")) {
-        localStorage.setItem("tokens", "{}");
-      } else {
-        let data = localStorage.getItem("tokens");
-        data = response.data;
-        localStorage.setItem("tokens", JSON.stringify(data));
-      }
+      // console.log("Пришел response", response);
+      // if (localStorage.getItem("tokens")) {
+      //   let data = JSON.parse(localStorage.getItem("tokens"));
+      //   data = response.data;
+      //   localStorage.setItem("tokens", JSON.stringify(data));
+      // } else {
+      //   localStorage.setItem("tokens", "{}");
+      // }
+      let data = JSON.parse(localStorage.getItem("tokens"));
+      data = response.data;
+      localStorage.setItem("tokens", JSON.stringify(data));
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data.detail);

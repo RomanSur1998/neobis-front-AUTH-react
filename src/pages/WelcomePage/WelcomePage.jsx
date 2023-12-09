@@ -36,7 +36,7 @@ const WelcomePage = () => {
         </div>
         <div className="d_flex column align_c width gap-4 ">
           <h2 className="text_align">
-            Выслали письмо со ссылкой для завершения регистрации на
+            Выслали письмо со ссылкой для завершения регистрации на <pre />
             {`${user.user.email || "example@gmail.com"} `}.
           </h2>
           <form className="d_flex column align_c gap-4" onSubmit={sandeCode}>
