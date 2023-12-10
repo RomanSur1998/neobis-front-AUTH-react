@@ -4,10 +4,17 @@ import RegistrationPage from "../pages/Registration/RegistrationPage";
 import AuthPage from "../pages/Auth/AuthPage";
 import LogOutPage from "../pages/LogOutPage/LogOutPage";
 import WelcomePage from "../pages/WelcomePage/WelcomePage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getToken } from "../helpers/getToken";
+import { setToken } from "../redux/slices/UserSlice";
 
 const MainRouter = () => {
   const { token } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getToken(dispatch, setToken);
+  }, []);
   console.log(token, "user");
 
   const PRIVATE_ROUT_COLLECTION = [

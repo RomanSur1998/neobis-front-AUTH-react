@@ -8,7 +8,7 @@ import Field from "../Fields/Field";
 import { validationSchema } from "../../functions/getShemaLogin";
 import { api } from "../../api/api";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin } from "../../redux/slices/UserSlice";
+import { loginUser, setLogin } from "../../redux/slices/UserSlice";
 
 function LoginForm({ notify }) {
   const [isShow, setIsShow] = useState(false);
@@ -16,8 +16,8 @@ function LoginForm({ notify }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   console.log(user, "login user");
-  function handleLogin() {
-    api.autorisation(JSON.stringify(user.user, null, 2), navigate, notify);
+  function handleLogin(values) {
+    api.autorisation(JSON.stringify(values, null, 2), navigate, notify);
   }
 
   const formik = useFormik({
@@ -26,9 +26,10 @@ function LoginForm({ notify }) {
       password: "",
     },
     onSubmit: (values) => {
-      console.log("submit", JSON.stringify(values, null, 2));
-      dispatch(setLogin(values));
-      handleLogin();
+      // console.log("submit", JSON.stringify(values, null, 2));
+      // dispatch(setLogin(values));
+      // handleLogin(values);
+      dispatch(loginUser({ data: values, navigate }));
     },
     validationSchema,
   });

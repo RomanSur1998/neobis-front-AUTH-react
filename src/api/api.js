@@ -36,22 +36,26 @@ export const api = {
       throw error;
     }
   },
-  logOutUser: async function (navigate) {
-    try {
-      const data = JSON.parse(localStorage.getItem("tokens"));
-      const token = {
-        refresh: data.refresh,
-      };
-      const response = await configuratedAxios.post(
-        "/logout/",
-        JSON.stringify(token, null, 2)
-      );
-      data = {};
-      localStorage.setItem("tokens", JSON.stringify(data));
-      navigate("/auth");
-      return response;
-    } catch (error) {
-      console.log("logOut error", error);
-    }
+  logOutUser: function (navigate) {
+    // try {
+    //   const data = JSON.parse(localStorage.getItem("tokens"));
+    //   const token = {
+    //     refresh: [data.refresh],
+    //   };
+    //   const response = await configuratedAxios.post(
+    //     "/logout/",
+    //     JSON.stringify(token, null, 2)
+    //   );
+    //   data = {};
+    //   localStorage.setItem("tokens", JSON.stringify(data));
+    //   navigate("/auth");
+    //   return response;
+    // } catch (error) {
+    //   console.log("logOut error", error);
+    // }
+    let data = JSON.parse(localStorage.getItem("tokens"));
+    data = {};
+    localStorage.setItem("tokens", JSON.stringify(data));
+    navigate("/");
   },
 };

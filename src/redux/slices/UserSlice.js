@@ -27,9 +27,24 @@ export const signUpUser = createAsyncThunk(
   "user/signUpUser",
   async ({ data, navigate }, { rejectWithValue, dispatch }) => {
     try {
-      console.log("Проходит запрос", data);
+      // console.log("Проходит запрос", data);
       const response = await api.registration(data, navigate);
-      console.log("Пришел response", response);
+      // console.log("Пришел response", response);
+      dispatch(setUser(data));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.detail);
+    }
+  }
+);
+export const loginUser = createAsyncThunk(
+  "user/loginUser",
+  async ({ data, navigate }, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await api.autorisation(data, navigate);
+      let token = JSON.parse(localStorage.getItem("tokens"));
+      token = response.data;
+      localStorage.setItem("tokens", JSON.stringify(token));
       dispatch(setUser(data));
       return response.data;
     } catch (error) {
@@ -72,6 +87,9 @@ const userSlice = createSlice({
       console.log("rejected", action.payload);
       state.error = action.payload;
       state.status = null;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.token = action.payload;
     });
   },
 });

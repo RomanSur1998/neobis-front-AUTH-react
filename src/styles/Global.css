@@ -79,7 +79,8 @@ label {
   transition: 0.3s ease-in-out;
 }
 li {
-  list-style: none;
+  /* list-style: none; */
+  margin-left: 20px;
 }
 .width {
   width: 500px;
