@@ -29,7 +29,7 @@ function LoginForm({ notify }) {
       // console.log("submit", JSON.stringify(values, null, 2));
       // dispatch(setLogin(values));
       // handleLogin(values);
-      dispatch(loginUser({ data: values, navigate }));
+      dispatch(loginUser({ data: values, navigate, notify: notify }));
     },
     validationSchema,
   });

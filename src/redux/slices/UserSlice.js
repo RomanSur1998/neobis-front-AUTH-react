@@ -39,9 +39,9 @@ export const signUpUser = createAsyncThunk(
 );
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async ({ data, navigate }, { rejectWithValue, dispatch }) => {
+  async ({ data, navigate, notify }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await api.autorisation(data, navigate);
+      const response = await api.autorisation(data, navigate, notify);
       let token = JSON.parse(localStorage.getItem("tokens"));
       token = response.data;
       localStorage.setItem("tokens", JSON.stringify(token));
